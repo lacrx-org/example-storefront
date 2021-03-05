@@ -48,7 +48,7 @@
         },
         {
           "name": "OAUTH2_ADMIN_URL",
-          "value": "http://internal-hydra-elb:4445"
+          "value": "http://internal-test-hydra-admin-lb-1150266455.us-west-2.elb.amazonaws.com:4445"
         },
         {
           "name": "OAUTH2_PUBLIC_LOGOUT_URL",
