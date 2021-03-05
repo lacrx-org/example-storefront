@@ -1,0 +1,120 @@
+{
+  "status": "ACTIVE",
+  "family": "test-storefront",
+  "placementConstraints": [],
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+    }
+  ],
+  "compatibilities": ["EC2"],
+  "volumes": [],
+  "requiresCompatibilities": ["EC2"],
+  "containerDefinitions": [
+    {
+      "memoryReservation": 512,
+      "environment": [
+        {
+          "name": "INTERNAL_GRAPHQL_URL",
+          "value": "http://test-reaction-api-lb-1010031744.us-west-2.elb.amazonaws.com/graphql"
+        },
+        {
+          "name": "PORT",
+          "value": "4000"
+        },
+        {
+          "name": "OAUTH2_AUTH_URL",
+          "value": "https://auth-test.lacrx.com/oauth2/auth"
+        },
+        {
+          "name": "OAUTH2_IDP_PUBLIC_CHANGE_PASSWORD_URL",
+          "value": "https://identity-test.lacrx.com/account/change-password?email=EMAIL&from=FROM"
+        },
+        {
+          "name": "BUILD_GRAPHQL_URL",
+          "value": "https://api-test.lacrx.com/graphql"
+        },
+        {
+          "name": "OAUTH2_ADMIN_URL",
+          "value": "http://internal-hydra-elb:4445"
+        },
+        {
+          "name": "OAUTH2_PUBLIC_LOGOUT_URL",
+          "value": "https://auth-test.lacrx.com/oauth2/sessions/logout"
+        },
+        {
+          "name": "STRIPE_PUBLIC_API_KEY",
+          "value": "DUMMY_STRIPE_PKEY"
+        },
+        {
+          "name": "CANONICAL_URL",
+          "value": "https://storefront-test.lacrx.com"
+        },
+        {
+          "name": "EXTERNAL_GRAPHQL_URL",
+          "value": "https://api-test.lacrx.com/graphql"
+        },
+        {
+          "name": "OAUTH2_CLIENT_ID",
+          "value": "example-storefront"
+        },
+        {
+          "name": "OAUTH2_CLIENT_SECRET",
+          "value": "a523431f3669e68f719a2d597a147f2c"
+        },
+        {
+          "name": "SESSION_SECRET",
+          "value": "f6d697e5d6cfa3b9235fd75050a638f1"
+        },
+        {
+          "name": "OAUTH2_ADMIN_PORT",
+          "value": "4445"
+        },
+        {
+          "name": "OAUTH2_TOKEN_URL",
+          "value": "https://auth-test.lacrx.com/oauth2/token"
+        },
+        {
+          "name": "OAUTH2_IDP_HOST_URL",
+          "value": "https://identity-test.lacrx.com"
+        }
+      ],
+      "name": "test-storefront",
+      "workingDirectory": "/usr/local/src/app",
+      "mountPoints": [],
+      "image": "662460439248.dkr.ecr.us-west-2.amazonaws.com/lamps-storefront:trunk",
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-region": "us-west-2",
+          "awslogs-stream-prefix": "ecs",
+          "awslogs-group": "/ecs/test-storefront"
+        }
+      },
+      "cpu": 0,
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": 4000,
+          "hostPort": 0
+        }
+      ],
+      "command": ["yarn", "start"],
+      "essential": true,
+      "volumesFrom": []
+    }
+  ],
+  "revision": 1
+}
