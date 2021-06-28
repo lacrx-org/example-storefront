@@ -3,17 +3,17 @@ name: Deploy Storefront to Test
 on:
   push:
     branches:
-      - trunk
+      - dev
 
 jobs:
   ecs-deploy:
     name: Deploy to ECS
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout trunk branch
+      - name: Checkout dev branch
         uses: actions/checkout@v2
         with:
-          ref: trunk
+          ref: dev
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
